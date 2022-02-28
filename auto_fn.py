@@ -1,9 +1,11 @@
-nissan_gtr = {
-    "model": "Gt-r",
-    "engine": False,
-    "speed": 0,
-    "max_speed": 330,
-}
+# wzorzec projektowy fabryka
+def auto_factory(model, max_speed):
+    return {
+        "model": model,
+        "engine": False,
+        "speed": 0,
+        "max_speed": max_speed,
+    }
 
 
 def start_engine(auto):
@@ -24,12 +26,6 @@ def stop_engine(auto):
 
 def speed_up(auto, amount):
     if auto["engine"]:
-        #####################################################
-        # if auto["speed"] + amount >= auto["max_speed"]:   #
-        #     auto["speed"] = auto["max_speed"]             #
-        # else:                                             #
-        #     auto["speed"] += amount                       #
-        ########### same thing in one line below ############
         auto["speed"] = min(auto["speed"] + amount, auto["max_speed"])
         print(f'Jedziesz z prędkością {auto["speed"]} km/h')
     else:
@@ -41,15 +37,22 @@ def slow_down(auto, amount):
     print(f'Jedziesz z prędkością {auto["speed"]} km/h')
 
 
+nissan_gtr = auto_factory('Gt-r', 330)
+tico = auto_factory('Tico', 210)
+
 print(nissan_gtr)
 start_engine(nissan_gtr)
-speed_up(nissan_gtr, 200)
+start_engine(tico)
+speed_up(nissan_gtr, 20)
+speed_up(tico, 500)
 stop_engine(nissan_gtr)
-speed_up(nissan_gtr, 20)
-speed_up(nissan_gtr, 20)
+speed_up(nissan_gtr, 50)
 speed_up(nissan_gtr, 100)
-slow_down(nissan_gtr, 20)
-slow_down(nissan_gtr, 300)
-slow_down(nissan_gtr, 20)
+slow_down(nissan_gtr, 10)
+speed_up(nissan_gtr, 100)
+slow_down(nissan_gtr, 50)
+slow_down(nissan_gtr, 500)
 stop_engine(nissan_gtr)
+
 print(nissan_gtr)
+print(tico)
